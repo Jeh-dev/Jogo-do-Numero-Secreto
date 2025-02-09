@@ -1,0 +1,68 @@
+  let numeroSorteado = [];
+  let numeroLimite = 4
+  let numeroSecreto = numeroAleatorio();
+  let tentativa = 1;
+
+  function exibirTextoNatela (tag,texto) {
+  let campo = document.querySelector(tag);
+  campo.innerHTML = texto;
+  responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2})
+  }
+
+  function mensagemInicial () {
+exibirTextoNatela ('h1', 'Jogo do Numero Secreto')
+exibirTextoNatela ('p', 'escolha um numero de 1 a 10');
+  } 
+
+  mensagemInicial()
+  function verificarChute () {
+  let chute = document.querySelector ('input').value;
+if (chute == numeroSecreto) {
+  exibirTextoNatela ('h1', 'vc acertou ')
+ let pTentativas = tentativa > 1 ? ' tentativas' : ' tentativa'
+  let mensaTentativa = 'vc descobriu o numero secreto com ' + tentativa + pTentativas
+  exibirTextoNatela ('p', mensaTentativa);
+  document.getElementById('reiniciar').removeAttribute ('disabled');
+} else {
+ if (chute > numeroSecreto) {
+   exibirTextoNatela ('p', 'o numero secreto é menor')
+ } else {
+   if (chute < numeroSecreto) {
+     exibirTextoNatela ('p', 'o numero secreto é maior')
+    }
+    }
+    }
+    tentativa++;
+    limparCampo ();
+  }
+
+  function numeroAleatorio() {
+      let numeroEscolhido = parseInt(Math.random() * numeroLimite + 1 );
+      let limitadorNumeros = numeroSorteado.length;
+
+      if (limitadorNumeros == numeroLimite) {
+        numeroSorteado = [];
+      }
+
+      if (numeroSorteado.includes(numeroEscolhido)){
+          return numeroAleatorio();
+      } else {
+        numeroSorteado.push(numeroEscolhido);
+        console.log(numeroSorteado);
+        return numeroEscolhido;
+      }
+  }
+
+  function limparCampo() {
+    chute = document.querySelector('input');
+    chute.value = '';
+  }
+
+  function reiniciarJogo() {
+    //console.log ('vc apertou');
+      numeroSecreto = numeroAleatorio();
+      limparCampo();
+      tentativa = 1;
+      mensagemInicial ();
+      document.getElementById('reiniciar').setAttribute('disabled', true)
+  }
