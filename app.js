@@ -10,17 +10,17 @@
   }
 
   function mensagemInicial () {
-exibirTextoNatela ('h1', 'Jogo do Numero Secreto')
-exibirTextoNatela ('p', 'escolha um numero de 1 a 10');
+exibirTextoNatela ('h1', 'Jogo do numero secreto')
+exibirTextoNatela ('p', 'Escolha um numero entre 1 e 10');
   } 
 
   mensagemInicial()
   function verificarChute () {
   let chute = document.querySelector ('input').value;
 if (chute == numeroSecreto) {
-  exibirTextoNatela ('h1', 'vc acertou ')
+  exibirTextoNatela ('h1', 'Parabéns!!! ')
  let pTentativas = tentativa > 1 ? ' tentativas' : ' tentativa'
-  let mensaTentativa = 'vc descobriu o numero secreto com ' + tentativa + pTentativas
+  let mensaTentativa = 'Vc descobriu o numero secreto ' + tentativa + pTentativas
   exibirTextoNatela ('p', mensaTentativa);
   document.getElementById('reiniciar').removeAttribute ('disabled');
 } else {
