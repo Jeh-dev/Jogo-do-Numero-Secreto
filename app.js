@@ -20,7 +20,7 @@ exibirTextoNatela ('p', 'Escolha um numero entre 1 e 10');
 if (chute == numeroSecreto) {
   exibirTextoNatela ('h1', 'Parabéns!!! ')
  let pTentativas = tentativa > 1 ? ' tentativas' : ' tentativa'
-  let mensaTentativa = 'Vc descobriu o numero secreto ' + tentativa + pTentativas
+  let mensaTentativa = 'Vc descobriu o numero secreto com ' + tentativa + pTentativas
   exibirTextoNatela ('p', mensaTentativa);
   document.getElementById('reiniciar').removeAttribute ('disabled');
 } else {
